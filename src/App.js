@@ -1,35 +1,35 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import React, { Component } from 'react'
+import Header from "./components/Header"
+import List from "./components/List"
+import Footer from "./components/Footer"
 import './App.css';
-
-function App() {
-  const list=()=>{
-    return 
-    (<div>1111</div>)
-  }
+export default class App extends Component {
   state={
-    tex:''
+    todos:[
+      {id:1,name:"吃饭1",done:true},
+      {id:2,name:"吃饭2",done:true},
+      {id:3,name:"吃饭3",done:false}
+    ]
   }
-  return (
-    <div className="App">
-      <header className="App-header">
-        <input type="text" value={this.state.tex}
-        
-        ></input> 
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <list></list>
-      </header>
-    </div>
-  );
+  addTodos=(dataObj)=>{
+    console.log(dataObj)
+    const {todos}=this.state
+    const data=[dataObj,...todos]
+    this.setState(
+      {todos:data}
+    )
+  }
+  render(){
+    const {todos}= this.state
+    return (
+      <div className="App">
+        <Header addTodos={this.addTodos}></Header>
+        <List todos={todos}></List>
+        <Footer></Footer>
+      </div>
+    );
+  }
 }
 
-export default App;
+// export default App;//暴露app组件
